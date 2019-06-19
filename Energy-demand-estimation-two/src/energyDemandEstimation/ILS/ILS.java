@@ -8,7 +8,7 @@ public class ILS {
 	}
 
 	// Devuelve una solución creada desde cero
-	public Solution createSolution(int pPerturbation, int nShares, int nAttempts) {
+	public Solution createSolution(int pPerturbation, double nshares, int nAttempts) {
 
 		Solution bestSolution, currentSolution;
 		LocalSearch localSearch = new LocalSearch();
@@ -19,7 +19,7 @@ public class ILS {
 		bestSolution = initSol();
 
 		// Usa la búsqueda local para mejorar lo máximo posible esa solución
-		bestSolution = localSearch.improve(bestSolution, nShares);
+		bestSolution = localSearch.improve(bestSolution, nshares);
 
 		currentSolution = bestSolution;
 
@@ -27,7 +27,7 @@ public class ILS {
 
 			// Aplica la perturbación y la búsqueda local a la mejor solución encontrada
 			currentSolution = perturbation.perturbate(currentSolution, pPerturbation);
-			currentSolution = localSearch.improve(currentSolution, nShares);
+			currentSolution = localSearch.improve(currentSolution, nshares);
 
 			// Si la nueva solución es mejor que la mejor hasta el momento, la guarda y
 			// reinicia el contador de intentos, si no, incrementa el contador

@@ -7,7 +7,7 @@ import energyDemandEstimation.ILS.*;
 public class EnergyDemandEstimation {
 
 	private static final int pPerturbation = 20; // Porcentaje máximo que va a perturbar cada parámetro
-	private static final int nShares = 10; // Numero de divisiones de los parámetros que realiza la búsqueda local
+	private static final double nShares = 50; // Numero de divisiones de los parámetros que realiza la búsqueda local
 	private static final int nAttempts = 10; // Número de intentos para buscar una solución mejor
 
 	public static void main(String[] args) {
@@ -21,6 +21,15 @@ public class EnergyDemandEstimation {
 		// Llamada al Iterative Local Search para crear la solución.
 		bestSolution = iterativeLocalSearch.createSolution(pPerturbation, nShares, nAttempts);
 
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	}
 
 }
