@@ -6,7 +6,7 @@ public class Data {
 	private double[][] trainData;
 	private double[][] testData;
 
-	public Data() {
+	public Data() { // La primera posición del array indica el gasto energético real de ese año.
 		data = new double[][] {
 				{ 0.08, 0.03, 0.30, 0.03, 0.03, 0.11, 0.11, 0.08, 0.07, 0.61, 0.64, 0.08, 0.17, 0.20, 0.03 }, // 1981
 				{ 0.10, 0.04, 0.31, 0.04, 0.04, 0.18, 0.07, 0.08, 0.10, 0.56, 0.62, 0.09, 0.19, 0.32, 0.03 }, // 1982

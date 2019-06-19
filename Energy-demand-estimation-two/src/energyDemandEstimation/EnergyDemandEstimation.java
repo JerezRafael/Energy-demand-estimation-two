@@ -5,21 +5,22 @@ import energyDemandEstimation.misc.*;
 import energyDemandEstimation.ILS.*;
 
 public class EnergyDemandEstimation {
-	
-	private static final int perturbation = 20;
-	private static final int nShares = 10;
+
+	private static final int pPerturbation = 20; // Porcentaje que se busca perturbar
+	private static final int nShares = 10; // Numero de divisiones de los parámetros
+	private static final int nAttempts = 10; // Número de intentos para buscar una solución mejor
 
 	public static void main(String[] args) {
-		
+
 		// Declarando variables e inicializando objetos
 		RandomManager.setSeed(1234);
 		Data data = new Data();
 		Solution bestSolution;
-		ILS iterativeLocalSearch = new ILS(data);
-		
+		ILS iterativeLocalSearch = new ILS();
+
 		// Llamada al Iterative Local Search para crear la solución.
-		bestSolution = iterativeLocalSearch.createSolution();
-		
+		bestSolution = iterativeLocalSearch.createSolution(pPerturbation, nShares, nAttempts);
+
 	}
 
 }
