@@ -2,14 +2,14 @@ package energyDemandEstimation.misc;
 
 public class Solution {
 
-	private double[] selectedVars;
+	private double[] parameters;
 
 	public Solution(double[] solucion) {
-		this.selectedVars = solucion;
+		this.parameters = solucion;
 	}
 
-	public double[] getSelectedVars() {
-		return selectedVars;
+	public double[] getParameters() {
+		return parameters;
 	}
 
 }
