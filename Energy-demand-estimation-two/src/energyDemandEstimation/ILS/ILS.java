@@ -15,22 +15,22 @@ public class ILS {
 		Perturbation perturbation = new Perturbation();
 		int n = 0;
 
-		// Inicializamos la solución, declarando la primera totalmente aleatoria
+		// Inicializa la solución, siendo la primera totalmente aleatoria
 		bestSolution = initSol();
 
-		// Usamos la búsqueda local para mejorar lo máximo posible esa solución
+		// Usa la búsqueda local para mejorar lo máximo posible esa solución
 		bestSolution = localSearch.improve(bestSolution, nShares);
 
 		currentSolution = bestSolution;
 
-		while (n < nAttempts) { // Cuando se lleven nAttempts seguidos sin mejorar, se detiene la búsqueda
+		while (n < nAttempts) { // Cuando lleve nAttempts seguidos sin mejorar, detiene la búsqueda
 
-			// Aplicamos perturbación y búsqueda local a la mejor solución encontrada
+			// Aplica la perturbación y la búsqueda local a la mejor solución encontrada
 			currentSolution = perturbation.perturbate(currentSolution, pPerturbation);
 			currentSolution = localSearch.improve(currentSolution, nShares);
 
-			// Si la nueva solución es mejor que la mejor hasta el momento, la guardamos y
-			// reiniciamos el contador de intentos, si no, incrementamos el contador
+			// Si la nueva solución es mejor que la mejor hasta el momento, la guarda y
+			// reinicia el contador de intentos, si no, incrementa el contador
 			if (MSE.error(currentSolution) < MSE.error(bestSolution)) {
 				bestSolution = currentSolution;
 				n = 0;
