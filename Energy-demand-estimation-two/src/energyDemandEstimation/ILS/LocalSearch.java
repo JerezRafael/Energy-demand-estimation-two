@@ -99,6 +99,6 @@ public class LocalSearch {
 
 		}
 
-		return null;
+		return new Solution(bestParameters);
 	}
 }
