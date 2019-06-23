@@ -12,9 +12,10 @@ public class MSE {
 
 		double error = 0;
 		double[][] trainData = data.getTrainData();
-		for (int i = 0; i < trainData.length; i++) {
-			error += Math.sqrt(trainData[i][0] - PredictionModel.apply(trainData[i], solution));
-		}
+		
+		for (int i = 0; i < trainData.length; i++)
+			error += Math.abs(PredictionModel.apply(trainData[i], solution) - (double) trainData[i][0]);
+		
 		error = error / trainData.length;
 		return error;
 	}

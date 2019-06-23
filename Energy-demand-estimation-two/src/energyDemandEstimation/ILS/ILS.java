@@ -21,22 +21,21 @@ public class ILS {
 		// Usa la búsqueda local para mejorar lo máximo posible esa solución
 		bestSolution = localSearch.improve(bestSolution, nshares);
 
-		currentSolution = bestSolution;
+		currentSolution = new Solution(bestSolution.getParameters().clone());
 
 		while (n < nAttempts) { // Cuando lleve nAttempts seguidos sin mejorar, detiene la búsqueda
 
 			// Aplica la perturbación y la búsqueda local a la mejor solución encontrada
 			currentSolution = perturbation.perturbate(currentSolution, pPerturbation);
 			currentSolution = localSearch.improve(currentSolution, nshares);
-
+			
 			// Si la nueva solución es mejor que la mejor hasta el momento, la guarda y
 			// reinicia el contador de intentos, si no, incrementa el contador
 			if (MSE.error(currentSolution) < MSE.error(bestSolution)) {
-				bestSolution = currentSolution;
+				bestSolution = new Solution(currentSolution.getParameters().clone());
 				n = 0;
-			} else {
+			} else
 				n++;
-			}
 		}
 
 		return bestSolution;
@@ -48,9 +47,8 @@ public class ILS {
 		double[] parameters = new double[29];
 
 		parameters[0] = (RandomManager.getRandom().nextInt(101) - 50) / 10.0;
-		for (int i = 1; i < parameters.length; i++) {
+		for (int i = 1; i < parameters.length; i++)
 			parameters[i] = (RandomManager.getRandom().nextInt(21) - 10) / 10.0;
-		}
 
 		return new Solution(parameters);
 	}

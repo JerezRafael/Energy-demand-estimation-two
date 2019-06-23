@@ -38,10 +38,10 @@ public class EnergyDemandEstimation {
 		try {
 			sb = new StringBuilder();
 
-			for (int y = 0; y < 16; y++) {
+			for (int year = 0; year < 16; year++) {
 
-				// Cada iteración del for será la ejecución de un año
-				switch (y) {
+				// Cada iteración es la ejecución de un año
+				switch (year) {
 				case 0:
 					referenceYear = 1985;
 					break;
@@ -97,24 +97,22 @@ public class EnergyDemandEstimation {
 				/* CSV */
 
 				// Obtiene nEjecuciones resultados y los exporta a un csv
-				for (int n = 0; n < nExecutions; n++) {
+				for (int i = 0; i < nExecutions; i++) {
 
-					System.out.print(".");
-
-					sb.append(n + 1);
+					sb.append(i + 1);
 					sb.append(";");
 
 					startTime = System.nanoTime();
 
 					bestSolution = iterativeLocalSearch.createSolution(pPerturbation, nShares, nAttempts);
 
-					for (int i = 0; i < nIterations; i++) {
-						
+					for (int j = 0; j < nIterations; j++) {
+
 						// Llamada al Iterative Local Search para crear la solución.
 						currentSolution = iterativeLocalSearch.createSolution(pPerturbation, nShares, nAttempts);
-						
+
 						if (MSE.error(currentSolution) < MSE.error(bestSolution))
-							bestSolution = currentSolution;
+							bestSolution = new Solution(currentSolution.getParameters().clone());
 
 					}
 
@@ -127,6 +125,8 @@ public class EnergyDemandEstimation {
 					sb.append(";");
 					sb.append(duration);
 					sb.append("\n");
+
+					System.out.print(".");
 				}
 
 				System.out.println();

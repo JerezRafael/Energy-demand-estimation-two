@@ -13,8 +13,9 @@ public class LocalSearch {
 	public Solution improve(Solution solution, double nshares) {
 
 		double[] bestParameters = solution.getParameters();
-		double[] currentParameters = bestParameters;
+		double[] currentParameters;
 		boolean mejora = true;
+		double originalValue;
 
 		// Crea dos arrays con todos los posibles valores que pueden tener los
 		// parámetros dependiendo de nShares
@@ -55,10 +56,12 @@ public class LocalSearch {
 			// Va recorriendo todas las posiciones aleatoriamente
 			for (int i = 0; i < positions.length; i++) {
 
-				currentParameters = bestParameters;
+				currentParameters = bestParameters.clone();
 
 				// Si la posicion es 0, hay que coger otro array distinto de posibles parametros
 				if (positions[i] == 0) {
+
+					originalValue = currentParameters[positions[i]];
 
 					for (int j = 0; j < test1.length; j++) {
 
@@ -68,13 +71,19 @@ public class LocalSearch {
 						// Si es mejor, se empieza a intentar mejorar todo de nuevo
 						if (MSE.error(new Solution(currentParameters)) < MSE.error(new Solution(bestParameters))) {
 
-							bestParameters = currentParameters;
+							bestParameters = currentParameters.clone();
 							mejora = true;
 							break;
 						}
 					}
 
+					// Si no encuentra ningún valor mejor, ponemos el original
+					if (!mejora)
+						currentParameters[positions[i]] = originalValue;
+
 				} else {
+
+					originalValue = currentParameters[positions[i]];
 
 					for (int j = 0; j < test2.length; j++) {
 
@@ -84,19 +93,19 @@ public class LocalSearch {
 						// Si es mejor, se empieza a intentar mejorar todo de nuevo
 						if (MSE.error(new Solution(currentParameters)) < MSE.error(new Solution(bestParameters))) {
 
-							bestParameters = currentParameters;
+							bestParameters = currentParameters.clone();
 							mejora = true;
 							break;
 						}
 					}
 
+					// Si no encuentra ningún valor mejor, ponemos el original
+					if (!mejora)
+						currentParameters[positions[i]] = originalValue;
 				}
-
 				if (mejora)
 					break;
-
 			}
-
 		}
 
 		return new Solution(bestParameters);
