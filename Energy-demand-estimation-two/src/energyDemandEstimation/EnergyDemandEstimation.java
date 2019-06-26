@@ -2,13 +2,13 @@ package energyDemandEstimation;
 
 import energyDemandEstimation.data.Data;
 import energyDemandEstimation.misc.*;
+import energyDemandEstimation.ILS.ILS;
+import energyDemandEstimation.PredictionModel.PredictionModel;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
-import energyDemandEstimation.ILS.*;
-import energyDemandEstimation.PredictionModel.PredictionModel;
 
 public class EnergyDemandEstimation {
 

@@ -1,8 +1,6 @@
 package energyDemandEstimation.ILS;
 
-import energyDemandEstimation.misc.MSE;
-import energyDemandEstimation.misc.RandomManager;
-import energyDemandEstimation.misc.Solution;
+import energyDemandEstimation.misc.*;
 
 public class LocalSearch {
 
